@@ -20,7 +20,7 @@ class LocalCoreDataService{
             if let movieData = result {
                 var modelMovies = [MovieModel]()
                 for c_movie in movieData {
-                    let obj = MovieModel(pId: c_movie["id"]!, pTitle: c_movie["title"]!, pOrder: nil, pSummary: c_movie["summary"]!, pImage: c_movie["image"]!, pCategory: c_movie["categoria"]!, pDirector: c_movie["director"]!)
+                    let obj = MovieModel(pId: c_movie["id"]!, pTitle: c_movie["title"]!, pOrder: nil, pSummary: c_movie["summary"]!, pImage: c_movie["image"]!, pCategory: c_movie["category"]!, pDirector: c_movie["director"]!)
                     modelMovies.append(obj)
                 }
                 remoteHandler(modelMovies)
@@ -108,7 +108,7 @@ class LocalCoreDataService{
     func getMovieById(_ id : String, favorito : Bool) -> MovieManager?{
         let context = stack.persistentContainer.viewContext
         let request : NSFetchRequest<MovieManager> = MovieManager.fetchRequest()
-        let customPredicate = NSPredicate(format: "id = \(id) and favorito = \(favorito)")
+        let customPredicate = NSPredicate(format: "id = \(id) and favorito = \(favorito)") //
         request.predicate = customPredicate
         do {
             let fetchmovies = try context.fetch(request)
@@ -155,7 +155,7 @@ class LocalCoreDataService{
     func removeAllnotFavoriteMovies(){
         let context = stack.persistentContainer.viewContext
         let request : NSFetchRequest<MovieManager> = MovieManager.fetchRequest()
-        let customPredicate = NSPredicate(format: "favorito \(false)")
+        let customPredicate = NSPredicate(format: "favorito = \(false)")
         request.predicate = customPredicate
         do{
             let fetchMovies = try context.fetch(request)
