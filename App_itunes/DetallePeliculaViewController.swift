@@ -7,29 +7,72 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class DetallePeliculaViewController: UIViewController {
 
+    
+    // MARK: - vbles locales
+    var movie : MovieModel?
+    let dataProvider = LocalCoreDataService()
+    
+    // MARK: - IBoutlets
+    
+    
+    @IBOutlet weak var myImagePelicula: UIImageView!
+    
+    @IBOutlet weak var myTituloPelicula: UILabel!
+    
+    @IBOutlet weak var myDirectorPelicula: UILabel!
+    
+    @IBOutlet weak var myCategoriaPelicula: UILabel!
+    
+    @IBOutlet weak var myButtonMeInteresaBTN: UIButton!
+    
+    
+    @IBOutlet weak var mySinopsisTV: UITextView!
+    
+    
+    
+    // MARK: - Actions
+    
+    
+    @IBAction func peliculaFavoritaAction(_ sender: Any) {
+    
+        configuredFavoriteBTN()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    // MARK: -Utils
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configuredFavoriteBTN(){
+        if let movieData = movie{
+            if dataProvider.isFavorite(movieData){
+                myButtonMeInteresaBTN.setBackgroundImage(#imageLiteral(resourceName: "btn-on"), for: .normal)
+                myButtonMeInteresaBTN.setTitle("Quiero verla!", for: .normal)
+            } else {
+                myButtonMeInteresaBTN.setBackgroundImage(#imageLiteral(resourceName: "btn-off"), for: .normal)
+                myButtonMeInteresaBTN.setTitle("No me interesa!", for: .normal)
+            }
+        }
     }
-    */
 
 }

@@ -139,6 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Eyj-CV-fUM"/>
                     <connections>
+                        <outlet property="myCollectionView" destination="MKO-aK-yI9" id="KAh-Fu-yWY"/>
                         <segue destination="wdA-PB-1g1" kind="show" id="8NA-ha-EyP"/>
                     </connections>
                 </viewController>
@@ -275,6 +276,9 @@
                                         <state key="normal" title="No me interesa" backgroundImage="btn-off">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="peliculaFavoritaAction:" destination="wdA-PB-1g1" eventType="touchUpInside" id="ATN-BM-bQ6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.11621248903318467" green="0.11561652755096319" blue="0.11680845051540611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -322,6 +326,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qLF-0o-q8v"/>
+                    <connections>
+                        <outlet property="myButtonMeInteresaBTN" destination="Jpc-yV-Du0" id="x1V-WN-MOB"/>
+                        <outlet property="myCategoriaPelicula" destination="1bg-Xh-6hF" id="Mfk-ch-DVc"/>
+                        <outlet property="myDirectorPelicula" destination="FyJ-pp-sHD" id="TGu-gr-peF"/>
+                        <outlet property="myImagePelicula" destination="M1L-kL-n2c" id="UKG-72-Cgy"/>
+                        <outlet property="mySinopsisTV" destination="al0-ni-hIY" id="TB3-fR-jlx"/>
+                        <outlet property="myTituloPelicula" destination="AeC-n8-zex" id="aQo-Y3-Tid"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Hg-xS-iWz" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,6 +347,6 @@
         <image name="ver-icon" width="25" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3qC-y6-O5I"/>
+        <segue reference="8NA-ha-EyP"/>
     </inferredMetricsTieBreakers>
 </document>

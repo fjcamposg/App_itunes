@@ -170,7 +170,31 @@ class LocalCoreDataService{
         }
     }
     
+    func getFavoriteMovie() -> [MovieModel]?{
+        let context = stack.persistentContainer.viewContext
+        let request : NSFetchRequest<MovieManager> = MovieManager.fetchRequest()
+        let customPredicate = NSPredicate(format: "favorito = \(true)")
+        request.predicate = customPredicate
+        do {
+            let fetchMovies = try context.fetch(request)
+            var movies = [MovieModel]()
+            for c_movieData in fetchMovies{
+                movies.append(c_movieData.mappedObject())
+            }
+            return movies
+        }catch{
+            print ("Error mientras obtenemos favoritos")
+            return nil
+        }
+    }
     
+    func isFavorite(_ movie : MovieModel) -> Bool{
+        if let _ = getMovieById(movie.id!, favorito: true){
+            return true
+        } else {
+            return false
+        }
+    }
     
     
     
