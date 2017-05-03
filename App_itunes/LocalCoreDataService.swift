@@ -196,6 +196,40 @@ class LocalCoreDataService{
         }
     }
     
+    func markUnMarkFavorito(_ movie: MovieModel){
+        let context = stack.persistentContainer.viewContext
+        if let existe = getMovieById(movie.id!, favorito: true){
+            context.delete(existe)
+        } else {
+            let favorito = MovieManager(context: context)
+            favorito.id = movie.id!
+            favorito.title = movie.title!
+            favorito.summary = movie.summary!
+            favorito.category = movie.category!
+            favorito.director = movie.director!
+            favorito.image = movie.image!
+            favorito.favorito = true
+    
+        do {
+            try context.save()
+        
+        } catch{
+            print("Error mientras marcamso favorito")
+        }
+
+        }
+            updateFavoriteBadge()
+    }
+    
+    func updateFavoriteBadge(){
+        if let totalFavoritos = getFavoriteMovie()?.count{
+        let customNotification = Notification(name: Notification.Name("updateFavouriteNotification"),
+                                              object: totalFavoritos,
+                                              userInfo: nil)
+            NotificationCenter.default.post(customNotification)
+        }
+        
+    }
     
     
     

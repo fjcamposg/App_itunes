@@ -77,7 +77,7 @@
                     <connections>
                         <outlet property="myCollectionView" destination="fHn-qo-7KG" id="ts8-u0-ivc"/>
                         <outlet property="mySearchBar" destination="Zih-9q-VEM" id="ozL-8s-q9z"/>
-                        <segue destination="wdA-PB-1g1" kind="show" id="3qC-y6-O5I"/>
+                        <segue destination="wdA-PB-1g1" kind="show" identifier="detalleSegue" id="3qC-y6-O5I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,7 +99,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MKO-aK-yI9">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2n-TO-atz">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="O2n-TO-atz">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -140,7 +140,7 @@
                     <navigationItem key="navigationItem" id="Eyj-CV-fUM"/>
                     <connections>
                         <outlet property="myCollectionView" destination="MKO-aK-yI9" id="KAh-Fu-yWY"/>
-                        <segue destination="wdA-PB-1g1" kind="show" id="8NA-ha-EyP"/>
+                        <segue destination="wdA-PB-1g1" kind="show" identifier="detalleSegue" id="8NA-ha-EyP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiR-J3-J83" sceneMemberID="firstResponder"/>

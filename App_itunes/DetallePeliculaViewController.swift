@@ -39,14 +39,32 @@ class DetallePeliculaViewController: UIViewController {
     
     
     @IBAction func peliculaFavoritaAction(_ sender: Any) {
-    
-        configuredFavoriteBTN()
-        
+        if let movieData  = movie{
+            dataProvider.markUnMarkFavorito(movieData)
+            configuredFavoriteBTN()
+        }
     }
     
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let movieData = movie{
+            //Imagen
+            if let imageData = movieData.image {
+                myImagePelicula.kf.setImage(with: ImageResource(downloadURL: URL(string: imageData)!))
+                
+            }
+            myTituloPelicula.text = movieData.title
+            self.navigationItem.title = movieData.title
+            myDirectorPelicula.text = movieData.director
+            myCategoriaPelicula.text = movieData.category
+            mySinopsisTV.text = movieData.summary
+            
+            configuredFavoriteBTN()
+            
+        }
+    }
     
     
     

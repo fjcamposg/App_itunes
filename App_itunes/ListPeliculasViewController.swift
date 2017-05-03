@@ -82,7 +82,19 @@ class ListPeliculasViewController: UIViewController {
         self.view.removeGestureRecognizer(tapGR)
         
     }
-    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detalleSegue"{
+            if let indexPathSelected = myCollectionView.indexPathsForSelectedItems?.last{
+                let selectedMovie = movies[indexPathSelected.row]
+                let detalleVC = segue.destination as! DetallePeliculaViewController
+                detalleVC.movie = selectedMovie
+            }
+        } else {
+            
+        }
+        
+    }
    
 }
 
@@ -120,6 +132,10 @@ extension ListPeliculasViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 113, height: 170)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detalleSegue", sender: self)
     }
     
     /***** SEARCHBAR ******/

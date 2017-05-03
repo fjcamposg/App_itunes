@@ -38,6 +38,10 @@ class ListaFavoritosViewController: UIViewController {
         super.viewWillAppear(animated)
         loadData()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
 
 // MARK: - UTILS
     func loadData(){
@@ -45,6 +49,23 @@ class ListaFavoritosViewController: UIViewController {
             movies = movieData
             myCollectionView.reloadData()
         }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detalleSegue"{
+            if let indexPathSelected = myCollectionView.indexPathsForSelectedItems?.last{
+                let selectedMovie = movies[indexPathSelected.row]
+                let detalleVC = segue.destination as! DetallePeliculaViewController
+                detalleVC.movie = selectedMovie
+            }
+        } else {
+            
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detalleSegue", sender: self)
     }
     
 }
@@ -92,12 +113,13 @@ extension ListaFavoritosViewController : UICollectionViewDelegate, UICollectionV
 
     func configuredCell(_ cell : PeliculaCustomCellCollectionViewCell, withMovie movie : MovieModel){
         if let imageData = movie.image{
-            cell.myImageMovie.kf.setImage(with: ImageResource(downloadURL: URL(string: imageData)!),
+            
+            cell.myImageMovie?.kf.setImage(with: ImageResource(downloadURL: URL(string: imageData)!),
                                           placeholder: #imageLiteral(resourceName: "img-loading"),
                                           options: nil,
                                           progressBlock: nil,
                                           completionHandler: nil)
-            
+ 
             
         }
     }

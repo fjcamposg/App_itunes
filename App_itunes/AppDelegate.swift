@@ -18,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         customUI()
+        // Notificacion
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateFavouriteNotification),
+                                               name: Notification.Name("updateFavouriteNotification"),
+                                               object: nil)
+        let dataProvider = LocalCoreDataService()
+        dataProvider.updateFavoriteBadge()
+        
+        
         
         return true
     }
@@ -60,7 +69,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
-    
+    func updateFavouriteNotification(_ notification : Notification){
+        let tabBarVC = self.window?.rootViewController as! UITabBarController
+        let favNavVC = tabBarVC.viewControllers?.last as! UINavigationController
+        if let total = notification.object as? Int{
+            if total != 0{
+                favNavVC.tabBarItem.badgeValue = "\(total)"
+            } else {
+                favNavVC.tabBarItem.badgeValue = nil
+            }
+        }
+    }
     
     
 }
